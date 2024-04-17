@@ -1,24 +1,75 @@
 #include "sort.h"
 /**
- * quick_sort - Function that sorts an array based on
- * quick sort algorithm
- * @array: Array to be sorted
- * @size: Size of array
- * Return: 0
+ * _swap - swap two numbers
+ * @a: integer
+ * @b: integer
+ */
+void _swap(int *a, int *b)
+{
+	int tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+/**
+ * _split - Split the array and takes the last element as pivot
+ * @arr: Array
+ * @min: first element
+ * @last: The last element
+ * @size: size
+ * Return: integer
+ */
+int _split(int *arr, int min, int last, size_t size)
+{
+	int piv;
+	int i = (min);
+	int j;
+
+	piv = arr[last];
+	for (j = min; j < last; j++)
+	{
+		if (arr[j] <= piv)
+		{
+			_swap(&arr[i], &arr[j]);
+			if (i != j)
+				print_array(arr, size);
+			i++;
+		}
+	}
+	_swap(&arr[i], &arr[last]);
+	if (i != j)
+		print_array(arr, size);
+	return (i);
+}
+/**
+ * quick_sort_array - quick_sort_array
+ * @arr: arr
+ * @min: min
+ * @last: last
+ * @size: size
+ * Return: Nothing
+ */
+void quick_sort_array(int *arr, int min, int last, size_t size)
+{
+	int piv;
+
+	if (min < last)
+	{
+		piv = _split(arr, min, last, size);
+		quick_sort_array(arr, min, (piv - 1), size);
+		quick_sort_array(arr, (piv + 1), last, size);
+	}
+}
+/**
+ * quick_sort -Sort an array using quick_sort algorithm
+ * @array: array
+ * @size: size
  */
 void quick_sort(int *array, size_t size)
 {
-	size_t pivot;
-
-	if (!array || size < 2)
+	if (size < 2)
 		return;
-	print_sort(array, size, 1);
-	/* partition and get pivot index */
-	pivot = partition(array, size);
-
-	/* repeat for left of index */
-	quick_sort(array, pivot);
-	/* repeat for index and right */
-	quick_sort(array + pivot, size - pivot);
+	quick_sort_array(array, 0, size - 1, size);
 }
 
