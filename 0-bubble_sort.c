@@ -4,11 +4,11 @@
  * @array: Array to be sorted
  * @size: Size of array
  * Description: Function that sorts an array using the bubble sort method
- * Return: 0
+ * Return: void
  */
 void bubble_sort(int *array, size_t size)
 {
-	int tmp;
+	int tmpe;
 	size_t i, j;
 
 	if (array == NULL || size == 0)
@@ -19,9 +19,9 @@ void bubble_sort(int *array, size_t size)
 		{
 			if (array[j] > array[j + 1])
 			{
-				tmp = array[j];
+				tmpe = array[j];
 				array[j] = array[j + 1];
-				array[j + 1] = tmp;
+				array[j + 1] = tmpe;
 				print_array(array, size);
 			}
 		}
