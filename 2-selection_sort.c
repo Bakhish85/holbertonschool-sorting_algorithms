@@ -1,4 +1,4 @@
-#include "sort.h"
+i#include "sort.h"
 /**
  * _swap - swap two numbers
  * @a: integer
@@ -6,11 +6,11 @@
  */
 void _swap(int *a, int *b)
 {
-	int tmp;
+	int tmpe;
 
-	tmp = *a;
+	tmpe = *a;
 	*a = *b;
-	*b = tmp;
+	*b = tmpe;
 }
 /**
  * selection_sort - sort array using selection sort algorithm
